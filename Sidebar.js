@@ -22,6 +22,11 @@ export default function Sidebar({ isVisible, setVisible, navigation, showLogout 
       const auth = getAuth();
       await signOut(auth);
       setVisible(false);
+      // Reset navigation to Login screen after logout
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Login' }],
+      });
     } catch (error) {
       console.error("Logout error:", error);
       Alert.alert("Error", "Failed to logout. Try again.");
@@ -29,11 +34,20 @@ export default function Sidebar({ isVisible, setVisible, navigation, showLogout 
   };
 
   const menuItems = [
-    { title: 'Rooms', icon: 'bed-outline', screen: 'AvailableRooms' },
+    { title: 'Rooms', icon: 'bed-outline', screen: 'Bookings' }, // Changed to 'Bookings'
     { title: 'Amenities', icon: 'cafe-outline', screen: 'Amenities' },
     { title: 'About Us', icon: 'information-circle-outline', screen: 'AboutUs' },
     { title: 'Contact', icon: 'call-outline', screen: 'ContactUs' },
   ];
+
+  const handleMenuPress = (screen) => {
+    setVisible(false);
+    // Reset navigation stack for main menu items
+    navigation.reset({
+      index: 0,
+      routes: [{ name: screen }],
+    });
+  };
 
   return (
     <>
@@ -45,10 +59,7 @@ export default function Sidebar({ isVisible, setVisible, navigation, showLogout 
             <TouchableOpacity
               key={index}
               style={styles.menuItem}
-              onPress={() => {
-                setVisible(false);
-                navigation.navigate(item.screen);
-              }}
+              onPress={() => handleMenuPress(item.screen)}
             >
               <Ionicons name={item.icon} size={20} color="#333" style={styles.menuIcon} />
               <Text style={styles.menuText}>{item.title}</Text>

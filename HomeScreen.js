@@ -39,7 +39,7 @@ export default function HomeScreen({ navigation }) {
 
       {/* Main Content */}
       <LinearGradient
-        colors={['#e0e0e0', '#808080']} 
+        colors={['#e0e0e0', '#ffffffff']} 
         locations={[0.1, 0.9]} 
         style={styles.body}
         start={{ x: 0, y: 0 }}
@@ -89,14 +89,14 @@ const styles = StyleSheet.create({
   centeredContent: { alignItems: 'center' },
   smallText: {
     fontSize: 14,
-    color: '#fff',
+    color: '#d4af37',
     textAlign: 'center',
     marginBottom: 12,
     letterSpacing: 1,
   },
   bigText: {
     fontSize: 30,
-    color: '#fff',
+    color: '#d4af37',
     textAlign: 'center',
     lineHeight: 36,
     paddingHorizontal: 10,

@@ -1,4 +1,3 @@
-// LoginScreen.js
 import React, { useState } from "react";
 import {
   View,
@@ -20,25 +19,27 @@ export default function LoginScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
-    try {
-      setLoading(true);
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+  try {
+    setLoading(true);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-      if (!user.emailVerified) {
-        Alert.alert("Email not verified", "Please verify your email before logging in.");
-        await signOut(auth); // kick user back out
-        return;
-      }
+    if (!user.emailVerified) {
+      Alert.alert("Email not verified", "Please verify your email before logging in.");
+      await signOut(auth);
+      return;
+    }
 
-      // ✅ Verified → go to Home
-      console.log("Login successful:", user.email);
-        } catch (error) {
-          Alert.alert("Login failed", error.message);
-        } finally {
-          setLoading(false);
-        }
-      };
+    // ✅ Verified → go to Home
+    console.log("Login successful:", user.email);
+    // Palitan ng navigate instead of reset
+    navigation.navigate('Home');
+  } catch (error) {
+    Alert.alert("Login failed", error.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <LinearGradient colors={["#f8f8f8", "#e8e8e8"]} style={styles.container}>
@@ -85,7 +86,7 @@ export default function LoginScreen({ navigation }) {
 
       {/* Link to Register */}
       <TouchableOpacity onPress={() => navigation.replace("Register")}>
-        <Text style={styles.link}>Don’t have an account? Register</Text>
+        <Text style={styles.link}>Don't have an account? Register</Text>
       </TouchableOpacity>
     </LinearGradient>
   );

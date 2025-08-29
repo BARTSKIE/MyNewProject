@@ -303,14 +303,14 @@ const rooms = [
     description: 'Standard room with queen bed and garden view'
   },
   {
-  id: 2,
-  name: 'Room 2',
-  type: 'room',
-  dayPrice: '₱400',
-  overnightPrice: '₱650',
-  image: 'https://i.imgur.com/3BeQ9Zm.jpg', 
-  description: 'Budget-friendly room with single bed',
-},
+    id: 2,
+    name: 'Room 2',
+    type: 'room',
+    dayPrice: '₱400',
+    overnightPrice: '₱650',
+    image: 'https://i.imgur.com/3BeQ9Zm.jpg', 
+    description: 'Budget-friendly room with single bed',
+  },
   { 
     id: 3, 
     name: 'Room 3', 
@@ -403,20 +403,12 @@ const rooms = [
   },
 ];
 
-const menuItems = [
-  { title: 'Rooms', icon: 'bed-outline' },
-  { title: 'Amenities', icon: 'cafe-outline' },
-  { title: 'About Us', icon: 'information-circle-outline' },
-  { title: 'Contact', icon: 'call-outline' },
-];
-
 export default function BookingScreen({ navigation }) {
   const [fontsLoaded] = useFonts({
     PlayfairDisplay: require('./assets/fonts/PlayfairDisplay-Regular.ttf'),
   });
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [sidebarVisible, setSidebarVisible] = useState(false);
-  const sidebarAnim = useRef(new Animated.Value(-sidebarWidth)).current;
 
   if (!fontsLoaded) return null;
 
@@ -436,7 +428,7 @@ export default function BookingScreen({ navigation }) {
         isVisible={sidebarVisible}
         setVisible={setSidebarVisible}
         navigation={navigation}
-        showLogout={true} // no logout here, only in HomeScreen
+         // Changed to false since this isn't HomeScreen
       />
 
       {/* Navbar */}
@@ -507,116 +499,6 @@ const cardWidth = (Dimensions.get('window').width - 40) / 2;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
-  navbar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingTop: Platform.OS === 'android' ? 50 : 60,
-    paddingHorizontal: 20,
-    paddingBottom: 15,
-    backgroundColor: '#fff',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-  },
-  navTitle: {
-    marginLeft: 15,
-    fontSize: 22,
-    fontWeight: '600',
-    fontFamily: 'PlayfairDisplay',
-    color: '#2c3e50',
-  },
-  body: {
-    flex: 1,
-    paddingHorizontal: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  centeredContent: { alignItems: 'center' },
-  smallText: {
-    fontSize: 14,
-    color: '#fff',
-    textAlign: 'center',
-    marginBottom: 12,
-    letterSpacing: 1,
-  },
-  bigText: {
-    fontSize: 26,
-    color: '#fff',
-    textAlign: 'center',
-    lineHeight: 32,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    fontFamily: 'PlayfairDisplay',
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    zIndex: 5,
-  },
-  sidebar: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    width: sidebarWidth,
-    backgroundColor: '#fff',
-    paddingTop: Platform.OS === 'android' ? 50 : 70,
-    paddingHorizontal: 20,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 2, height: 0 },
-    shadowRadius: 5,
-    elevation: 10,
-    zIndex: 20,
-  },
-  menuHeader: {
-    fontSize: 20,
-    fontWeight: '700',
-    marginBottom: 25,
-    color: '#d4af37',
-    textAlign: 'center',
-  },
-  menuList: {
-    flex: 1,
-  },
-  menuItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    borderBottomColor: '#ddd',
-    borderBottomWidth: 1,
-  },
-  menuIcon: {
-    marginRight: 15,
-  },
-  menuText: {
-    fontSize: 16,
-    color: '#333',
-  },
-  logoutWrapper: {
-    paddingVertical: 15,
-    borderTopColor: '#ddd',
-    borderTopWidth: 1,
-  },
-  logoutBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#b22222',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 25,
-    justifyContent: 'center',
-  },
-  logoutText: {
-    color: '#fff',
-    fontSize: 16,
-    marginLeft: 8,
-    fontWeight: '600',
-  },
   navbar: {
     flexDirection: 'row',
     alignItems: 'center',
