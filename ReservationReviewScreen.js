@@ -10,7 +10,6 @@ import {
   Alert
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import PaymentStep from './PaymentStep';
 
 export default function ReservationReviewScreen({ route, navigation }) {
   const { room, date, guests, totalPrice, dayHours, overnightHours } = route.params;
